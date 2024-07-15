@@ -1,14 +1,29 @@
 import "./App.css";
 import LoginForm from "./components/LoginForm";
-import NavBar from "./components/NavBar";
 
-function App() {
+import React from "react";
+import { ThemeProvider, useTheme } from "./components/ThemeContext";
+import { GlobalStyles } from "./components/GlobalStyles";
+import ToggleButton from "./components/Light-Dark-Button";
+
+const ThemedApp: React.FC = () => {
+  const { theme } = useTheme();
+
   return (
     <>
-      <NavBar />;
-      <LoginForm />;
+      <GlobalStyles theme={theme} />
+      <ToggleButton />
+      <LoginForm />
     </>
   );
-}
+};
+
+const App: React.FC = () => {
+  return (
+    <ThemeProvider>
+      <ThemedApp />
+    </ThemeProvider>
+  );
+};
 
 export default App;

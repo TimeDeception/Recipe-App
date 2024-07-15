@@ -8,7 +8,7 @@
   height: fit-content;
   min-width: 400px;
   width: 50%;
-  max-width: 600;
+  max-width: 500px;
   padding: 50px 30px;
   background-color: #ffffff;
   border-radius: 15px;
@@ -32,7 +32,28 @@
 }
 
 #main {
-  display: grid;
+  display: flex;
+  justify-content: center;
+}
+
+#Navbar {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ff00ff;
+  height: 60px;
+  border-bottom: 2px solid cyan;
+  margin: 0;
+}
+.navbar button {
+  color: white;
 }
 
 button {
