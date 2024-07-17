@@ -1,10 +1,9 @@
 import "./App.css";
 import LoginForm from "./components/LoginForm";
-
 import React from "react";
+import NavBar from "./components/NavBar.tsx";
 import { ThemeProvider, useTheme } from "./components/ThemeContext";
 import { GlobalStyles } from "./components/GlobalStyles";
-import ToggleButton from "./components/Light-Dark-Button";
 
 const ThemedApp: React.FC = () => {
   const { theme } = useTheme();
@@ -12,7 +11,7 @@ const ThemedApp: React.FC = () => {
   return (
     <>
       <GlobalStyles theme={theme} />
-      <ToggleButton />
+      <NavBar />
       <LoginForm />
     </>
   );
