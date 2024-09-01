@@ -1,9 +1,9 @@
 import "./App.css";
-import LoginForm from "./components/LoginForm";
+import LoginForm from "./components/LoginForm.tsx";
 import React from "react";
 import NavBar from "./components/NavBar.tsx";
-import { ThemeProvider, useTheme } from "./components/ThemeContext";
-import { GlobalStyles } from "./components/GlobalStyles";
+import { ThemeProvider, useTheme } from "./components/ThemeContext.tsx";
+import { GlobalStyles } from "./components/GlobalStyles.tsx";
 
 const ThemedApp: React.FC = () => {
   const { theme } = useTheme();
