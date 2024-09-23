@@ -19,7 +19,8 @@ const LoginForm = () => {
           </button>
         </form>
         <p>
-          Don't have an Account?<Link to="../Register.html">Register here</Link>
+          Don't have an Account?{" "}
+          <Link to="../Register.html">Register here</Link>
         </p>
       </div>
     </>
