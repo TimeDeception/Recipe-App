@@ -1,16 +1,13 @@
 export const LightTheme = {
-  body: "#E5E5E5",
+  body: "#dadde3",
   text: "#333333",
-  accent: "#00FFFF",
-  highlight: "#FF00FF",
   border: "#CCCCCC",
-  button: "#00CCFF",
   buttonText: "#FFFFFF",
 };
 
 export const DarkTheme = {
-  body: "#121212",
-  text: "white",
+  body: "#696b6e",
+  text: "Green",
   accent: "#00FFFF",
   highlight: "light gray",
   border: "#3A3A3A",

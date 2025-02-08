@@ -36,11 +36,17 @@
 }
 
 #main {
-  display: flex;
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 70px;
+  max-width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+
   height: 70vh;
   width: 50vw;
   margin-left: 10px;
@@ -61,13 +67,10 @@ p {
 .navbar {
   display: flex;
   justify-content: space-between;
-  background-color: #ff00ff;
+  background-color: #1772e8;
   height: 60px;
-  border-bottom: 2px solid cyan;
+  border-bottom: 4px solid #36f700;
   margin: 0;
-}
-.navbar button {
-  color: white;
 }
 
 button {
@@ -84,4 +87,39 @@ button {
 }
 button:hover {
   background-color: #ff00ff;
+}
+.Card {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  grid-template-rows: 50px;
+  grid-template-areas: "card card card";
+  grid-area: card;
+  width: 85vw;
+  max-width: 500px;
+  height: 40vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: whitesmoke;
+  align-items: center;
+}
+#card-content {
+  flex-grow: 1;
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .Card {
+    width: 350px;
+    height: 450px;
+    font-size: 14px;
+  }
 }
