@@ -1,14 +1,18 @@
 import Light_Dark_Button from "./Light-Dark-Button";
 
-const NavBar = () => {
+interface NavBarButtons {
+  className: string;
+  itemButtons?: [];
+  onClick?: () => void;
+}
+
+const NavBar = (button: NavBarButtons) => {
   return (
     <>
-      <header>
-        <nav className="navbar">
-          <img src="" alt="logo" />
-          <Light_Dark_Button />
-        </nav>
-      </header>
+      <aside className={button.className}>
+        <img src="" alt="logo" />
+        <Light_Dark_Button />
+      </aside>
     </>
   );
 };

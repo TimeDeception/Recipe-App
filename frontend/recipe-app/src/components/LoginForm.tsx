@@ -4,7 +4,7 @@ const LoginForm = () => {
   return (
     <>
       <div className="form-container">
-        <h2>Welcome To GlitchGastronomy</h2>
+        <h2>Welcome To SolarRecipe's</h2>
         <form className="login-form">
           <div className="login-inputs">
             <label htmlFor="username">Username</label>
