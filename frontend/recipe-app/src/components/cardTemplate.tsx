@@ -1,17 +1,26 @@
-import React from "react";
-
 interface Card {
-  className: string;
+  CardStyle: string;
+  idName: string;
+  isHeading?: boolean;
+  text?: string;
   Items?: [];
   onClick?: () => void;
 }
 
 const cardTemplate = (card: Card) => {
-  return (
-    <>
-      <div className={card.className}></div>
-    </>
-  );
+  if (card.isHeading == true) {
+    return (
+      <div className={card.CardStyle} id={card.idName}>
+        <h1>{card.text}</h1>
+      </div>
+    );
+  } else {
+    return (
+      <div className={card.CardStyle} id={card.idName}>
+        <p>{card.text}</p>
+      </div>
+    );
+  }
 };
 
 export default cardTemplate;

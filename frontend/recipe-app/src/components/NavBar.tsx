@@ -1,4 +1,5 @@
 import Light_Dark_Button from "./Light-Dark-Button";
+import "../themes.css";
 
 interface NavBarButtons {
   className: string;

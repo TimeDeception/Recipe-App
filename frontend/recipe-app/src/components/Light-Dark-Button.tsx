@@ -1,53 +1,24 @@
-import React, { ChangeEvent, useState } from "react";
-import styled from "styled-components";
-import { useTheme } from "./ThemeContext";
+import "../themes.css";
+import { useState } from "react";
 
-const ToggleButton: React.FC = () => {
-  const [switchSate, setSwitchState] = useState(true);
-  const { toggleTheme } = useTheme();
+const ThemeToggle: React.FC = () => {
+  const [theme, setTheme] = useState("light"); // Default theme
+  const themes = ["light", "dark", "solar"];
 
-  function handleOnchange(e: ChangeEvent<HTMLInputElement>) {
-    console.log("--", e.target.checked);
-    setSwitchState(!switchSate);
-  }
+  const toggleTheme = () => {
+    const currentIndex = themes.indexOf(theme);
+    const nextTheme = themes[(currentIndex + 1) % themes.length];
+    setTheme(nextTheme);
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    localStorage.setItem("theme", nextTheme);
+  };
 
   return (
-    <>
-      <StyledLabel htmlFor="checkbox" checked={switchSate}>
-        <input
-          onClick={toggleTheme}
-          onChange={handleOnchange}
-          checked={switchSate}
-          id="checkbox"
-          type="checkbox"
-        />
-      </StyledLabel>
-    </>
+    <button onClick={toggleTheme} className="theme-toggle">
+      Mood
+      <div className="icon"></div>
+    </button>
   );
 };
 
-const StyledLabel = styled.label<{ checked: boolean }>`
-  cursor: pointer;
-  text-indent: -9999px;
-  width: 80px;
-  height: 40px;
-  display: block;
-  background-color: ${({ checked }) => (checked ? "#00FFFF" : "#3A3A3A")};
-  border-radius: 100px;
-  position: relative;
-  top: 15px;
-  bottom 15px;
-  &:after {
-    content: "";
-    position: absolute;
-    left: ${({ checked }) => (checked ? "14px" : "calc(55% )")};
-    top: 8px;
-    width: 25px;
-    height: 25px;
-    background: #fff;
-    border-radius: 90px;
-    transition: 0.3s;
-  }
-`;
-
-export default ToggleButton;
+export default ThemeToggle;

@@ -1,0 +1,114 @@
+:root {
+  --text-color: black;
+  --button-background: #007bff;
+  --button-text: white;
+  --button-bg: #007bff;
+  --sun-color: yellow;
+  --moon-color: white;
+  --Nav-bg-color: lightgrey;
+}
+
+[data-theme="dark"] {
+  --background-color: #121212;
+  --text-color: white;
+  --button-background: #444;
+  --button-text: white;
+  --button-bg: #444;
+  --sun-color: #333;
+  --moon-color: white;
+  --border-bg-color: green;
+  --Nav-bg-color: blue;
+}
+
+[data-theme="light"] {
+  --background-color: white;
+  --text-color: black;
+  --button-background: #007bff;
+  --button-text: white;
+  --border-bg-color: lightgreen;
+  --Nav-bg-color: lightgrey;
+}
+
+[data-theme="solar"] {
+  --background-color: #f5d327;
+  --text-color: #333;
+  --button-background: #ffa500;
+  --button-text: #333;
+  --border-bg-color: orange;
+  --Nav-bg-color: skyblue;
+}
+/* Moon icon for dark mode */
+[data-theme="dark"] .icon {
+  left: 24px;
+  background-color: var(--moon-color);
+  box-shadow: -4px -4px 0px 2px var(--moon-color);
+}
+
+.theme-toggle {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle .icon {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 21px;
+  height: 21px;
+  background-color: var(--sun-color);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: "Arial", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle {
+  padding: 10px 20px;
+  background-color: var(--button-background);
+  color: var(--button-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  opacity: 0.9;
+}
+.theme-toggle:hover {
+  background-color: var(--button-bg);
+}
+.CardStyle {
+  box-shadow: -3px 2px 15px 2px;
+  border: 2px solid var(--border-bg-color);
+  border-radius: 10px;
+}
+#guestcard {
+  box-shadow: -3px 2px 15px 2px;
+  border: 2px solid var(--border-bg-color);
+}
+#Title {
+  margin-bottom: 100px;
+  text-align: center;
+}
+.NavCard {
+  background-color: var(--Nav-bg-color);
+  grid-area: Navboard;
+  box-shadow: 3px 2px 15px 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+}
