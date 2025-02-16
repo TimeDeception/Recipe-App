@@ -1,10 +1,12 @@
+import AuthCard from "./AuthCard";
+
 interface Card {
   CardStyle: string;
   idName: string;
   isHeading?: boolean;
   text?: string;
   Items?: [];
-  onClick?: () => void;
+  //onClick?: () => null;
 }
 
 const cardTemplate = (card: Card) => {
@@ -18,9 +20,10 @@ const cardTemplate = (card: Card) => {
     return (
       <div className={card.CardStyle} id={card.idName}>
         <p>{card.text}</p>
+        <AuthCard />
       </div>
     );
   }
 };
-
+//const handleEvent = () => {};
 export default cardTemplate;
