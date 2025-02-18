@@ -1,6 +1,9 @@
+import NavBar from "../src/components/NavBar";
+
 const HomePage = () => {
   return (
     <>
+      <NavBar className="NavCard" />
       <div className="Card">
         <div id="card-content">
           <h1 id="title">Welcome to Solar Recipe's</h1>
