@@ -80,25 +80,19 @@ button:hover {
   background-color: #ff00ff;
 }
 .Card {
-  display: grid;
-  grid-template-columns: 70px 1fr 1fr;
-  grid-template-rows: 50px;
-  grid-template-areas: "card card card";
-  grid-area: card;
+  grid-area: Content;
   width: 85vw;
   max-width: 500px;
   height: 40vw;
   max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   padding: 20px;
   box-sizing: border-box;
   background-color: whitesmoke;
-  align-items: center;
+  align-self: center;
+  justify-self: center;
 }
 #card-content {
   flex-grow: 1;
@@ -108,7 +102,7 @@ button:hover {
 }
 .GuestContent {
   grid-area: Content;
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;

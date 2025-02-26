@@ -50,14 +50,30 @@
   background-color: var(--moon-color);
   box-shadow: -4px -4px 0px 2px var(--moon-color);
 }
+
+#main {
+  display: grid;
+  grid-template-columns: 70px auto;
+  grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
+  grid-template-areas: "Navboard Content" "Navboard Content" "Navboard Content" "Navboard Content" "Navboard Content";
+  grid-area: Content;
+}
 .auth-card {
+  display: flex;
+  flex-direction: column;
+  grid-area: Content;
+  flex-wrap: wrap;
+  align-content: center;
   width: 400px;
+  height: 350px;
   padding: 20px;
   background: var(--background-color);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   margin: 10px;
+  justify-self: center;
+  align-self: center;
 }
 
 .auth-card h2 {

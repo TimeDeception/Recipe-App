@@ -1,11 +1,9 @@
 import NavBar from "../src/components/NavBar";
 import CardTemplate from "../src/components/cardTemplate.tsx";
-import { useNavigate } from "react-router-dom";
 
 const GuestPage = () => {
-  const navigate = useNavigate();
   const text =
-    "Solar Recipe's, a place where you can create, save, and browse the recipes of others.";
+    "Hello Friend, Welcome to Solar Recipe's. A website where you can save create and browse recipes from every culture on earth. This app is aiming to unite the people with a common love for food and to bring attention to the lifestyle known as Solar Punk, A way to live with nature while leaving behind the stress that is Capitalism and industrialism.";
   return (
     <>
       <NavBar className="NavCard" />
@@ -17,7 +15,6 @@ const GuestPage = () => {
           text="Welcome to Solar Recipe's"
         />
         <CardTemplate CardStyle="CardStyle" idName="guestcard" text={text} />
-        <button onClick={() => navigate("/auth")}>Get Started</button>
       </div>
     </>
   );

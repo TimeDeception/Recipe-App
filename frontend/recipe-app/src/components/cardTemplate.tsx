@@ -1,4 +1,4 @@
-import AuthCard from "./AuthCard";
+import { useNavigate } from "react-router-dom";
 
 interface Card {
   CardStyle: string;
@@ -10,6 +10,7 @@ interface Card {
 }
 
 const cardTemplate = (card: Card) => {
+  const navigate = useNavigate();
   if (card.isHeading == true) {
     return (
       <div className={card.CardStyle} id={card.idName}>
@@ -20,7 +21,7 @@ const cardTemplate = (card: Card) => {
     return (
       <div className={card.CardStyle} id={card.idName}>
         <p>{card.text}</p>
-        <AuthCard />
+        <button onClick={() => navigate("/auth")}>Login or Register</button>
       </div>
     );
   }
