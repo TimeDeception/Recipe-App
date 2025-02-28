@@ -1,4 +1,4 @@
-import "../themes.css";
+import "../CSS/themes.css";
 import { useState } from "react";
 
 const ThemeToggle: React.FC = () => {
