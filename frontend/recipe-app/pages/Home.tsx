@@ -19,7 +19,7 @@ const allRecipes = [
     instructions:
       "Cook spaghetti. In another pan, cook beef with onions and garlic, then add tomato sauce. Combine with spaghetti.",
   },
-  // Looking to use TheMealDB api for more recipe Data, Will look into mongoDB for data storage and user storage
+  // Looking to use TheMealDB api for more recipe Data, Will look into mongoDB for data and user storage
 ];
 
 const HomePage: React.FC = () => {
@@ -36,42 +36,22 @@ const HomePage: React.FC = () => {
     <>
       <NavBar className="NavCard" />
       <div className="home-container">
-        <h1>Welcome to Your Recipe Collection</h1>
+        <h1>The Solar Recipe Collection</h1>
         <SearchBar recipes={allRecipes} onSearch={setFilteredRecipes} />
-
-        <div className="recipe-list">
-          {filteredRecipes.length > 0 ? (
-            filteredRecipes.map((recipe) => (
-              <div key={recipe.id} className="recipe-card">
-                {recipe.name}
-              </div>
-            ))
-          ) : (
-            <p>No recipes found</p>
-          )}
-        </div>
-        <div className="home-container">
-          <h1>Recipe List</h1>
+        <div className="recipe-container">
           <div className="recipe-list">
-            {allRecipes.map((recipe) => (
-              <RecipeCard
-                key={recipe.id}
-                recipe={recipe}
-                onAddToCollection={handleAddToCollection}
-              />
-            ))}
-          </div>
-          <h2>My Collection</h2>
-          <div className="personal-collection">
-            {allRecipes
-              .filter((recipe) => personalCollection.includes(recipe.id))
-              .map((recipe) => (
+            {filteredRecipes.length > 0 ? (
+              filteredRecipes.map((recipe) => (
                 <RecipeCard
                   key={recipe.id}
+                  searchQuery=""
                   recipe={recipe}
-                  onAddToCollection={() => {}}
+                  onAddToCollection={handleAddToCollection}
                 />
-              ))}
+              ))
+            ) : (
+              <p>No recipes found</p>
+            )}
           </div>
         </div>
       </div>

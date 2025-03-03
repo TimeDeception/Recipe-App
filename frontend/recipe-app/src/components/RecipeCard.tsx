@@ -1,37 +1,28 @@
 import React from "react";
 
-interface Recipes {
-  id: number;
-  name: string;
-  image?: string;
-  ingredients: string[];
-  instructions?: string;
-}
 interface RecipeCardProps {
-  recipe: Recipes;
+  recipe: { id: number; name: string; image: string; ingredients: string[] };
+  searchQuery: string;
   onAddToCollection: (recipeId: number) => void;
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
+  searchQuery,
   onAddToCollection,
 }) => {
-  return (
+  const isVisible =
+    recipe.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    recipe.ingredients.some((ingredient) =>
+      ingredient.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  return isVisible ? (
     <div className="recipe-card">
-      <img src={recipe.image} alt={recipe.name} className="recipe-image" />
-      <h2>{recipe.name}</h2>
-      <h3>Ingredients:</h3>
-      <ul>
-        {recipe.ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient}</li>
-        ))}
-      </ul>
-      <h3>Instructions:</h3>
-      <p>{recipe.instructions}</p>
+      <h3>{recipe.name}</h3>
       <button onClick={() => onAddToCollection(recipe.id)}>
-        Add to My Collection
+        Add to Collection
       </button>
     </div>
-  );
+  ) : null; // If it doesn't match, return null (hides the card)
 };
 export default RecipeCard;
