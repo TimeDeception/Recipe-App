@@ -1,35 +1,16 @@
 import React, { useState } from "react";
 
 interface SearchBarProps {
-  recipes: {
-    id: number;
-    name: string;
-    image: string;
-    ingredients: string[];
-    instructions: string;
-  }[]; // Adjust according to your recipe structure
-  onSearch: (
-    filteredRecipes: {
-      id: number;
-      name: string;
-      image: string;
-      ingredients: string[];
-      instructions: string;
-    }[]
-  ) => void;
+  onSearch: (query: string) => void; // Accepts query instead of filtered recipes
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ recipes, onSearch }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [query, setQuery] = useState("");
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setQuery(value);
-
-    const filtered = recipes.filter((recipe) =>
-      recipe.name.toLowerCase().includes(value)
-    );
-    onSearch(filtered);
+    onSearch(value); // Pass query to parent component
   };
 
   return (
@@ -38,7 +19,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ recipes, onSearch }) => {
         type="text"
         placeholder="Search recipes..."
         value={query}
-        onChange={handleSearch}
+        onChange={handleChange}
       />
     </div>
   );

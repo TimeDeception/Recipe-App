@@ -4,6 +4,15 @@ import RecipeCard from "./RecipeCard";
 const RecipeList = ({ allRecipes, handleAddToCollection }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Filter recipes based on search query (name or ingredients)
+  const filteredRecipes = allRecipes.filter(
+    (recipe) =>
+      recipe.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      recipe.ingredients.some((ingredient) =>
+        ingredient.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+  );
+
   return (
     <div>
       {/* Search Input */}
@@ -16,12 +25,11 @@ const RecipeList = ({ allRecipes, handleAddToCollection }) => {
 
       {/* Recipe List */}
       <div className="recipe-list">
-        {allRecipes.length > 0 ? (
-          allRecipes.map((recipe) => (
+        {filteredRecipes.length > 0 ? (
+          filteredRecipes.map((recipe) => (
             <RecipeCard
               key={recipe.id}
               recipe={recipe}
-              searchQuery={searchQuery} // Pass search term to each card
               onAddToCollection={handleAddToCollection}
             />
           ))

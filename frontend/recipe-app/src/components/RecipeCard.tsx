@@ -1,14 +1,14 @@
 import React from "react";
 
 interface RecipeCardProps {
-  recipe: { id: number; name: string; image: string; ingredients: string[] };
-  searchQuery: string;
-  onAddToCollection: (recipeId: number) => void;
+  recipe: { id: string; name: string; image: string; ingredients: string[] };
+  searchQuery?: string;
+  onAddToCollection: (recipeId: string) => void;
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
-  searchQuery,
+  searchQuery = "",
   onAddToCollection,
 }) => {
   const isVisible =
@@ -16,13 +16,16 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
     recipe.ingredients.some((ingredient) =>
       ingredient.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
   return isVisible ? (
     <div className="recipe-card">
+      <img src={recipe.image} alt={recipe.name} />
       <h3>{recipe.name}</h3>
       <button onClick={() => onAddToCollection(recipe.id)}>
         Add to Collection
       </button>
     </div>
-  ) : null; // If it doesn't match, return null (hides the card)
+  ) : null;
 };
+
 export default RecipeCard;

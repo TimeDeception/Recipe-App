@@ -1,35 +1,37 @@
+import React, { useState, useEffect } from "react";
 import NavBar from "../src/components/NavBar";
-
-import React, { useState } from "react";
 import SearchBar from "../src/components/SearchBar";
 import RecipeCard from "../src/components/RecipeCard";
-
-const allRecipes = [
-  {
-    id: 1,
-    name: "Spaghetti Bolognese",
-    image: "path_to_image",
-    ingredients: [
-      "Spaghetti",
-      "Ground Beef",
-      "Tomato Sauce",
-      "Onion",
-      "Garlic",
-    ],
-    instructions:
-      "Cook spaghetti. In another pan, cook beef with onions and garlic, then add tomato sauce. Combine with spaghetti.",
-  },
-  // Looking to use TheMealDB api for more recipe Data, Will look into mongoDB for data and user storage
-];
+import { fetchRecipesByName } from "../src/api";
+import { Recipe } from "../src/components/types";
 
 const HomePage: React.FC = () => {
-  const [filteredRecipes, setFilteredRecipes] = useState(allRecipes);
-  const [personalCollection, setPersonalCollection] = useState<number[]>([]);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [personalCollection, setPersonalCollection] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleAddToCollection = (recipeId: number) => {
-    if (!personalCollection.includes(recipeId)) {
-      setPersonalCollection([...personalCollection, recipeId]);
+  useEffect(() => {
+    handleSearch(""); // Default search
+  }, []);
+
+  const handleSearch = async (query: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const filteredRecipes = await fetchRecipesByName(query);
+      setRecipes(filteredRecipes);
+    } catch (err) {
+      setError("No recipes found.");
+      setRecipes([]);
     }
+    setLoading(false);
+  };
+
+  const handleAddToCollection = (recipeId: string) => {
+    setPersonalCollection((prev) =>
+      prev.includes(recipeId) ? prev : [...prev, recipeId]
+    );
   };
 
   return (
@@ -37,14 +39,18 @@ const HomePage: React.FC = () => {
       <NavBar className="NavCard" />
       <div className="home-container">
         <h1>The Solar Recipe Collection</h1>
-        <SearchBar recipes={allRecipes} onSearch={setFilteredRecipes} />
+
+        <SearchBar onSearch={handleSearch} />
+
+        {loading && <p>Loading recipes...</p>}
+        {error && <p className="error">{error}</p>}
+
         <div className="recipe-container">
           <div className="recipe-list">
-            {filteredRecipes.length > 0 ? (
-              filteredRecipes.map((recipe) => (
+            {recipes.length > 0 ? (
+              recipes.map((recipe) => (
                 <RecipeCard
                   key={recipe.id}
-                  searchQuery=""
                   recipe={recipe}
                   onAddToCollection={handleAddToCollection}
                 />
