@@ -54,9 +54,10 @@
 #main {
   display: grid;
   grid-template-columns: 70px auto;
-  grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
+  grid-template-rows: 20vh 20vh 20vh 20vh 20vh auto;
   grid-template-areas: "Navboard Content" "Navboard Content" "Navboard Content" "Navboard Content" "Navboard Content";
   grid-area: Content;
+  width: 100vw;
 }
 .auth-card {
   display: flex;
@@ -155,24 +156,7 @@ body {
 .theme-toggle:hover {
   background-color: var(--button-bg);
 }
-.CardStyle {
-  box-shadow: -3px 2px 15px 2px;
-  border: 1px solid var(--border-bg-color);
-  border-radius: 10px;
-}
-#guestcard {
-  background-color: var(--card-bg-color);
-  box-shadow: -3px 2px 15px 2px;
-  border: 2px solid var(--border-bg-color);
-}
-#guestcard p {
-  margin: 10px;
-}
-#Title {
-  background-color: var(--card-bg-color);
-  margin-bottom: 20px;
-  text-align: center;
-}
+
 .NavCard {
   background-color: var(--Nav-bg-color);
   box-shadow: 2px 1px 1px 1px;
@@ -181,71 +165,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   border-radius: 10px;
-}
-.recipe-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 16px;
-  max-width: 400px;
-}
-
-.recipe-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-h2,
-h3 {
-  margin: 8px 0;
-}
-
-ul {
-  list-style-type: disc;
-  padding-left: 20px;
-}
-
-button {
-  background-color: #28a745;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #218838;
-}
-.home-container {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 20px;
-  width: 87vw;
-  height: fit-content;
-}
-
-.search-bar input {
-  width: 60%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.recipe-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-.recipe-card {
-  padding: 15px;
-  background: #f4f4f4;
-  border-radius: 5px;
-  min-width: 200px;
+  height: 100vh;
+  width: 7vw;
+  position: fixed;
 }

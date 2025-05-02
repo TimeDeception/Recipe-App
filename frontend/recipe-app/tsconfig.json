@@ -21,6 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*", "pages/Home.tsx"],
+  "include": ["src/**/*", "pages/AuthHome.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import AuthCard from "./components/AuthCard.tsx";
 import GuestPage from "../pages/GuestHome.tsx";
-import HomePage from "../pages/Home.tsx";
+import HomePage from "../pages/AuthHome.tsx";
 
 //import Home from "./components/Home.tsx";
 //import Card from "./components/cardTemplate";

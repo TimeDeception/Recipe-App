@@ -1,0 +1,28 @@
+version: "3.8"
+
+frontend:
+  build: ./frontend
+  ports:
+    - "5173:5173"
+  depends_on:
+    - backend
+
+backend:
+  build: ./backend
+  ports:
+    - "5000:5000"
+  depends_on:
+    - mongo
+  environment:
+    - MONGO_URI=mongodb://mongo:27017/solarrecipes
+
+mongo:
+  image: mongo:7
+  restart: "always"
+  ports:
+    - "27017:27017"
+  volumes:
+    - mongo_db:/data/db
+
+volumes:
+  mongo_data:

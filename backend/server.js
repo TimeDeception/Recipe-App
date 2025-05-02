@@ -11,12 +11,15 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
+const mongoUri =
+  process.env.MONGO_URI || "mongodb://localhost:27017/solarrecipes";
+
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
+  .catch((err) => console.error(err));
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -14,15 +14,9 @@
 }
 body {
   margin: 0;
+  display: grid;
 }
 
-#main {
-  display: grid;
-  grid-template-columns: 70px auto;
-  grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
-  grid-template-areas: "Navboard Content" "Navboard Content" "Navboard Content" "Navboard Content" "Navboard Content";
-  grid-area: Content;
-}
 .form-container {
   display: flex;
   flex-direction: column;
@@ -54,10 +48,6 @@ body {
   font-weight: lighter;
   color: #333333;
   margin-bottom: 7px;
-}
-
-#title {
-  align-self: center;
 }
 
 p {
@@ -100,24 +90,7 @@ button:hover {
   flex-direction: column;
   justify-content: center;
 }
-.GuestContent {
-  grid-area: Content;
-  display: grid;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-}
-#guestcard {
-  width: 60vw;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  margin: 5px;
-  border-radius: 15px;
-}
+
 @media (max-width: 768px) {
   .Card {
     width: 350px;

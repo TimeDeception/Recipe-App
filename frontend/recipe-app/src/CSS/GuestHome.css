@@ -1,0 +1,44 @@
+@import url(themes.css);
+
+.GuestContent {
+  grid-area: Content;
+  display: grid;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+#guestcard {
+  width: 60vw;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+  border-radius: 15px;
+}
+
+#title {
+  align-self: center;
+}
+
+.CardStyle {
+  box-shadow: -3px 2px 15px 2px;
+  border: 1px solid var(--border-bg-color);
+  border-radius: 10px;
+}
+#guestcard {
+  background-color: var(--card-bg-color);
+  box-shadow: -3px 2px 15px 2px;
+  border: 2px solid var(--border-bg-color);
+}
+#guestcard p {
+  margin: 10px;
+}
+#Title {
+  background-color: var(--card-bg-color);
+  margin-bottom: 20px;
+  text-align: center;
+}

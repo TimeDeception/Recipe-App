@@ -1,5 +1,6 @@
 import NavBar from "../src/components/NavBar";
 import CardTemplate from "../src/components/cardTemplate.tsx";
+import "../src/CSS/GuestHome.css";
 
 const GuestPage = () => {
   const text =

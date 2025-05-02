@@ -4,6 +4,7 @@ import SearchBar from "../src/components/SearchBar";
 import RecipeCard from "../src/components/RecipeCard";
 import { fetchRecipesByName } from "../src/api";
 import { Recipe } from "../src/components/types";
+import "../src/CSS/AuthHome.css";
 
 const HomePage: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
