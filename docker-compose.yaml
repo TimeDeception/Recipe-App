@@ -1,28 +1,41 @@
-version: "3.8"
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: backend.dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/solarrecipes
+    volumes:
+      - ./backend:/Recipe-App
 
-frontend:
-  build: ./frontend
-  ports:
-    - "5173:5173"
-  depends_on:
-    - backend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: frontend.dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/Recipe-App
 
-backend:
-  build: ./backend
-  ports:
-    - "5000:5000"
-  depends_on:
-    - mongo
-  environment:
-    - MONGO_URI=mongodb://mongo:27017/solarrecipes
-
-mongo:
-  image: mongo:7
-  restart: "always"
-  ports:
-    - "27017:27017"
-  volumes:
-    - mongo_db:/data/db
+  mongo:
+    image: mongo:7
+    restart: "always"
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_db:/data/db
 
 volumes:
-  mongo_data: bkm/
+  mongo_data:
+  mongo_db:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./mongo_data
+      o: bind

@@ -1,10 +1,10 @@
 FROM node:18-alpine
-WORKDIR /recipe-appa
+WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
 
 COPY . .
 
-EXPOSE 3000
-CMD ["npm", "start"]
+EXPOSE 5173
+CMD ["npm", "run", "dev"]
