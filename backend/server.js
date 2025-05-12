@@ -2,13 +2,20 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-require("dotnev").config();
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
+
+const restrictAccess = require('./middleware/authMiddleware');
+
+// Allow only subscribers
+app.get('/premium-recipes', restrictAccess(['subscriber']), (req, res) => {
+  res.json({ message: 'Welcome to premium recipes!' });
+});
 
 // Connect to MongoDB
 const mongoUri =

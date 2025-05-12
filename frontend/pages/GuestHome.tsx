@@ -8,7 +8,7 @@ const GuestPage = () => {
   return (
     <>
       <NavBar className="NavCard" />
-      <div className="GuestContent">
+      
         <CardTemplate
           CardStyle="CardStyle"
           idName="Title"
@@ -16,7 +16,7 @@ const GuestPage = () => {
           text="Welcome to Solar Recipe's"
         />
         <CardTemplate CardStyle="CardStyle" idName="guestcard" text={text} />
-      </div>
+      
     </>
   );
 };
