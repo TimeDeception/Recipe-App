@@ -9,6 +9,7 @@ services:
       - mongo
     environment:
       - MONGO_URI=mongodb://mongo:27017/solarrecipes
+      - NODE_ENV=development
     volumes:
       - ./backend:/Recipe-App
 
@@ -20,22 +21,20 @@ services:
       - "5173:5173"
     depends_on:
       - backend
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
     volumes:
-      - ./frontend:/Recipe-App
+      - ./frontend:/app
+      - /app/node_modules
 
   mongo:
     image: mongo:7
-    restart: "always"
+    restart: always
     ports:
       - "27017:27017"
     volumes:
       - mongo_db:/data/db
 
 volumes:
-  mongo_data:
   mongo_db:
-    driver: local
-    driver_opts:
-      type: none
-      device: ./mongo_data
-      o: bind

@@ -4,9 +4,7 @@
   "description": "This web app will be the first step and project into my web dev career. Showcasing skills fitting a jr web developer this'll include react, node and express, mongoDB, and json.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "",

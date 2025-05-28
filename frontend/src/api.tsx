@@ -34,3 +34,7 @@ const getIngredients = (meal: any): string[] => {
   }
   return ingredients;
 };
+// Use environment variables for API URL
+// This allows you to change the API URL without modifying the code
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+console.log(`API URL: ${apiUrl}`);

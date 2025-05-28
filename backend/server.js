@@ -11,6 +11,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const restrictAccess = require('./middleware/authMiddleware');
+const isProduction = process.env.NODE_ENV === "production";
+
+if (isProduction) {
+  console.log("Running in production mode");
+  // Disable dev-specific features like detailed logging
+} else {
+  console.log("Running in development mode");
+}
 
 // Allow only subscribers
 app.get('/premium-recipes', restrictAccess(['subscriber']), (req, res) => {
