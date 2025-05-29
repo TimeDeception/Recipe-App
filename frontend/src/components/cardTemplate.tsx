@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface Card {
@@ -5,8 +6,8 @@ interface Card {
   idName: string;
   isHeading?: boolean;
   text?: string;
+  imgSrc?: string;
   Items?: [];
-  //onClick?: () => null;
 }
 
 const cardTemplate = (card: Card) => {
@@ -20,7 +21,8 @@ const cardTemplate = (card: Card) => {
   } else {
     return (
       <div className={card.CardStyle} id={card.idName}>
-        <p>{card.text}</p>
+        {card.imgSrc && <img src={card.imgSrc} alt={typeof card.text === "string" ? card.text : "Meal"} className= "meal-img" />}
+        <div>{card.text}</div>
         <button onClick={() => navigate("/auth")}>Login or Register</button>
       </div>
     );

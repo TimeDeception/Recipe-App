@@ -19,7 +19,6 @@ const AuthCard: React.FC<AuthCardProps> = ({ setAuth }) => {
 
   return (
     <>
-      <NavBar className="NavCard" />
       <div className="auth-card">
         <h2>{isLogin ? "Login" : "Register"}</h2>
         <form onSubmit={handleAuth}>
