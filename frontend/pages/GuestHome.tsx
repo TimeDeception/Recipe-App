@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CardTemplate from "../src/components/cardTemplate.tsx";
 import "../src/CSS/GuestHome.css";
-import NavBar from "../src/components/NavBar.tsx";
 
 type Meal ={
   idMeal: string;
@@ -34,8 +33,7 @@ const GuestPage = () => {
   const text =
     "Hello Friend, Welcome to Solar Recipe's. A website where you can save create and browse recipes from every culture on earth. This app is aiming to unite the people with a common love for food and to bring attention to the lifestyle known as Solar Punk. The life of a solar punk enthusiast promotes the harmony of both nature and technology to allow for the maximum enjoyment of life.";
   return (
-    <>
-      <NavBar className= "NavBar"/>  
+    <> 
           <CardTemplate
           CardStyle="CardStyle"
           idName="Title"
@@ -45,19 +43,30 @@ const GuestPage = () => {
       
       
      
-      <CardTemplate CardStyle="CardStyle" idName="guestcard" text={<><div>{text}</div>
+      <CardTemplate
+  CardStyle="CardStyle"
+  idName="guestcard"
+  text={
+    <>
       {meals.length > 0 && (
         <div className="slideshow">
-          <button onClick={handlePrev}>&lt;</button>
-          <img
-            src={meals[currentIndex].strMealThumb}
-            alt={meals[currentIndex].strMeal}
-            className="slideshow-img"
-          />
-          <button onClick={handleNext}>&gt;</button>
-          <div style={{marginTop: "0.5rem"}}>{meals[currentIndex].strMeal}</div>
-        </div>
-      )}</>} />
+  <button className="slideshow-button prev" onClick={handlePrev}>&lt;</button>
+  <img
+    src={meals[currentIndex].strMealThumb}
+    alt={meals[currentIndex].strMeal}
+    className="slideshow-img"
+  />
+  <button className="slideshow-button next" onClick={handleNext}>&gt;</button>
+  <div style={{ marginTop: "0.5rem", fontWeight: "bold" }}>
+    {meals[currentIndex].strMeal}
+  </div>
+</div>
+      )}
+      <div className = "Ptext">{text}</div>
+    </>
+  }
+/>
+     
     </>
   );
 };

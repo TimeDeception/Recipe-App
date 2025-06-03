@@ -1,27 +1,39 @@
 @import url(themes.css);
 
-.GuestContent {
-  grid-area: Content;
-  display: grid;
-  flex-wrap: wrap;
+body{
+  
+  display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-content: center;
+}
+#main{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+
 #guestcard {
-  width: 60vw;
-  height: 500px;
+  width: 50vw;
+  height: fit-content;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin: 5px;
+  margin: 15px;
   border-radius: 15px;
 }
 
-#title {
+#Title {
+  display: flex;
   align-self: center;
+  padding: 10px;
+  background-color: var(--card-bg-color);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .CardStyle {
@@ -30,36 +42,160 @@
   border-radius: 10px;
 }
 #guestcard {
+  width: 90vw;
+  max-width: 500px;
+  min-width: 250px;
+  height: auto;
+  max-height: 90vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+  border-radius: 15px;
   background-color: var(--card-bg-color);
   box-shadow: -3px 2px 15px 2px;
   border: 2px solid var(--border-bg-color);
+  overflow: auto; /* Prevent content overflow */
 }
-#guestcard p {
-  margin: 10px;
+#guestcard > * {
+  max-width: 100%;
+  box-sizing: border-box;
 }
-#Title {
-  background-color: var(--card-bg-color);
-  margin-bottom: 20px;
-  text-align: center;
-}
-/* Add to GuestHome.css */
-.meal-gallery {
+
+.slideshow {
+  position: relative;
+  width: 60vw;
+  max-width: 290px; /* You can adjust this for your design */
+  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-.meal-card img.meal-img {
-  width: 100%;
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
-}
-.meal-card {
-  border: 1px solid #eee;
+
+.slideshow-img {
+  width: 80vw;
+  max-width: 250px; /* Match .slideshow max-width */
+  height: auto;
   border-radius: 8px;
-  padding: 0.5rem;
+  margin: 0.5rem 0;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.slideshow-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.7);
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  /* Remove static left/right here, set in .prev/.next */
+}
+.slideshow-button.prev {
+  left: 10px;
+}
+.slideshow-button.next {
+  right: 10px;
+}
+.slideshow-button:hover {
+  background: rgba(200,200,200,0.9);
+}
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%;
+}
+.button-container button {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  #guestcard {
+    width: 80vw;
+    max-width: 90vw;
+    padding: 6px;
+    margin: 5px;
+    min-width: unset;
+  }
+  #Title{
+    width: 75vw;;
+  }
+  .slideshow, .slideshow-img {
+    max-width: 60vw;
+  }
+  .slideshow-img {
+    max-width: 60vw;
+  }
+  .slideshow-button {
+    background-color: var(--button-bg-color);
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.3rem;
+  }
+  .Ptext {
+  padding: 6px;
+  font-size: 0.95rem;
   text-align: center;
-  width: 180px;
-  background: #fafafa;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+}
+
+@media (max-width: 380px) {
+  #guestcard {
+    width: 85vw;
+    max-width: 99vw;
+    height: 75vh;
+    padding: 4px;
+    margin: 2px;
+    min-width: unset;
+    font-size: 0.95rem;
+  }
+  .slideshow, .slideshow-img {
+    max-width: 60vw;
+  }
+  .slideshow-img {
+    max-width: 60vw;
+  }
+  .slideshow-button {
+    width: 1.7rem;
+    height: 1.7rem;
+    font-size: 1rem;
+  }
+  .Ptext {
+  padding: 6px;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+  .button-row, .button-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .theme-toggle {
+    font-size: 0.95rem;
+    padding: 4px 8px;
+    min-width: 60px;
+  }
 }
