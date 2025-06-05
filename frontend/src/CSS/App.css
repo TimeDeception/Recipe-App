@@ -68,21 +68,6 @@ button {
 button:hover {
   background-color: #ff00ff;
 }
-.Card {
-  grid-area: Content;
-  width: 85vw;
-  max-width: 500px;
-  height: 40vw;
-  max-height: 90vh;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: whitesmoke;
-  align-self: center;
-  justify-self: center;
-}
 #card-content {
   flex-grow: 1;
   display: grid;

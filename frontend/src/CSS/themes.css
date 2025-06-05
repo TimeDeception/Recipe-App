@@ -50,21 +50,26 @@ body {
   color: var(--text-color);
   font-family: "Arial", sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 #main {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
 }
 .auth-card {
   display: flex;
   flex-direction: column;
-  grid-area: Content;
   flex-wrap: wrap;
   align-content: center;
   width: 400px;
-  height: 350px;
+  height: 400px;
   padding: 20px;
   background: var(--card-bg-color);
   border-color: var(--border-bg-color);
@@ -74,6 +79,15 @@ body {
   margin: 10px;
   justify-self: center;
   align-self: center;
+}
+.auth-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
 }
 
 .auth-card h2 {
@@ -143,19 +157,6 @@ body {
 .theme-toggle .icon.moon { color: #bbb; }
 .theme-toggle .icon.solar { color: orange; }
 
-@media (max-width: 400px) {
-  .theme-toggle {
-    font-size: 0.9rem;
-    padding: 6px 8px;
-    min-width: 70px;
-  }
-  .theme-label {
-    font-size: 0.9em;
-  }
-  .theme-icon {
-    font-size: 1.1em;
-  }
-}
 
 .NavCard {
   background-color: var(--Nav-bg-color);
@@ -168,4 +169,13 @@ body {
   height: 100vh;
   width: 7vw;
   position: fixed;
+}
+
+@media (max-width: 420px) {
+  .auth-card{
+    width: 90vw;
+    height: auto;
+    padding: 10px;
+  }
+  
 }

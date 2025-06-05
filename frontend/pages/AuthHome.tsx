@@ -37,6 +37,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
+    <div className="auth-main">
       <NavBar className="NavCard" />
       <div className="home-container">
         <h1>The Solar Recipe Collection</h1>
@@ -62,6 +63,7 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 };

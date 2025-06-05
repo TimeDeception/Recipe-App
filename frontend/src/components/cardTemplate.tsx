@@ -25,7 +25,7 @@ const cardTemplate = (card: Card) => {
         {card.imgSrc && <img src={card.imgSrc} alt={typeof card.text === "string" ? card.text : "Meal"} className= "meal-img" />}
         <div>{card.text}</div>
         <div className="button-container">
-        <button onClick={() => navigate("/auth")}>Login or Register</button>
+        <button className="LoginOrRegisterBtn" onClick={() => navigate("/auth")}>Login or Register</button>
         <Light_Dark_Button />
         </div>
       </div>

@@ -19,6 +19,7 @@ const AuthCard: React.FC<AuthCardProps> = ({ setAuth }) => {
 
   return (
     <>
+    <div className="auth-container">
       <div className="auth-card">
         <h2>{isLogin ? "Login" : "Register"}</h2>
         <form onSubmit={handleAuth}>
@@ -34,6 +35,7 @@ const AuthCard: React.FC<AuthCardProps> = ({ setAuth }) => {
           </button>
         </p>
       </div>
+    </div>
     </>
   );
 };
