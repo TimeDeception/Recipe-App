@@ -11,7 +11,7 @@ const NavBar = (button: NavBarButtons) => {
   return (
     <>
       <aside className={button.className}>
-        <img src="" alt="logo" />
+        <img src="../src/Images/SolarIcon.png" alt="logo" />
         <Light_Dark_Button />
       </aside>
     </>

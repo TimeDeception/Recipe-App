@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../CSS/themes.css";
 import { useNavigate } from "react-router-dom";
-import NavBar from "./NavBar";
 
 interface AuthCardProps {
   setAuth: (auth: boolean) => void;

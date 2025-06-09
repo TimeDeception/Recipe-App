@@ -1,7 +1,15 @@
 import { useState } from "react";
 import RecipeCard from "./RecipeCard";
+import { Recipe } from "./types"; // Adjust the import path as necessary
 
-const RecipeList = ({ allRecipes, handleAddToCollection }) => {
+interface RecipeListProps {
+  allRecipes: Recipe[];
+  handleAddToCollection: (recipeId: string) => void;
+  onShowDetails?: (id: string) => void;
+  // onShowDetails is optional and can be used to show more details about the recipe
+}
+
+const RecipeList: React.FC<RecipeListProps> =({ allRecipes, handleAddToCollection }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   // Filter recipes based on search query (name or ingredients)

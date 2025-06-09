@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../src/components/NavBar";
 import SearchBar from "../src/components/SearchBar";
 import RecipeCard from "../src/components/RecipeCard";
+import RecipeInfo from "../src/components/RecipeInfo";
 import { fetchRecipesByName } from "../src/api";
 import { Recipe } from "../src/components/types";
 import "../src/CSS/AuthHome.css";
@@ -11,6 +12,7 @@ const HomePage: React.FC = () => {
   const [personalCollection, setPersonalCollection] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showRecipe, setShowRecipe] = useState(null as Recipe | null);
 
   useEffect(() => {
     handleSearch(""); // Default search
@@ -28,6 +30,17 @@ const HomePage: React.FC = () => {
     }
     setLoading(false);
   };
+
+  const showRecipeDetails = (recipeId: string) => {
+    const recipe = recipes.find((r) => r.id === recipeId);
+    if (recipe) {
+      setShowRecipe(recipe);
+    } else {
+      setError("Recipe not found.");
+    }
+  }
+    
+    
 
   const handleAddToCollection = (recipeId: string) => {
     setPersonalCollection((prev) =>
@@ -55,6 +68,7 @@ const HomePage: React.FC = () => {
                   key={recipe.id}
                   recipe={recipe}
                   onAddToCollection={handleAddToCollection}
+                  onShowDetails={showRecipeDetails}
                 />
               ))
             ) : (
@@ -64,6 +78,12 @@ const HomePage: React.FC = () => {
         </div>
       </div>
     </div>
+      {showRecipe && (
+  <>
+    <div className="recipe-info-overlay" onClick={() => setShowRecipe(null)} />
+    <RecipeInfo recipe={showRecipe} onClose={() => setShowRecipe(null)} />
+  </>
+)}
     </>
   );
 };

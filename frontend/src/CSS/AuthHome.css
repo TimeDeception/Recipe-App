@@ -29,7 +29,7 @@ button:hover {
 #main {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   height: 100vh;
 }
 .auth-main{
@@ -48,6 +48,13 @@ button:hover {
   flex-shrink: 0;
   position: relative;
   z-index: 1;
+}
+.NavCard img{
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  display: block;
+  margin: 5px;
 }
 
 .home-container {
@@ -111,6 +118,36 @@ button:hover {
   border-radius: 10px;
   display: block;
   margin: 0 auto;
+}
+/* Modal overlay for recipe info */
+.recipe-info {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  background: white;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.recipe-info img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Optional: dark background overlay */
+.recipe-info-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
 }
 
 @media (max-width: 900px) {
