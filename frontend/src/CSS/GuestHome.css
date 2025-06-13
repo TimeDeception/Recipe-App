@@ -1,30 +1,41 @@
 @import url(themes.css);
 
-body{
-  
+body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-#main{
+  min-height: 75vh;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent page scroll */
 }
-
-
-#guestcard {
-  width: 50vw;
-  height: fit-content;
-  padding: 15px;
+#main {
+  min-height: 620px;
+  height: 700px;
+  width: 900px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin: 15px;
+  justify-content: center;
+  overflow: hidden;
+}
+#guestcard {
+  width: 90vw;
+  max-width: 400px;
+  min-width: 220px;
+  height: 90vh;
+  max-height: 90vh;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 5px 0;
   border-radius: 15px;
+  background-color: var(--card-bg-color);
+  box-shadow: -3px 2px 15px 2px;
+  border: 2px solid var(--border-bg-color);
+  overflow: auto;
 }
 
 #Title {
@@ -43,48 +54,39 @@ body{
   border: 1px solid var(--border-bg-color);
   border-radius: 10px;
 }
-#guestcard {
-  width: 90vw;
-  max-width: 500px;
-  min-width: 250px;
-  height: auto;
-  max-height: 90vh;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  margin: 5px;
-  border-radius: 15px;
-  background-color: var(--card-bg-color);
-  box-shadow: -3px 2px 15px 2px;
-  border: 2px solid var(--border-bg-color);
-  overflow: auto; /* Prevent content overflow */
-}
-#guestcard > * {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
 .slideshow {
-  position: relative;
-  width: 60vw;
-  max-width: 290px; /* You can adjust this for your design */
+  position: relative; /* Add this */
+  width: 100%;
+  max-width: 220px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* Remove any overflow: hidden here if present */
 }
-
 .slideshow-img {
-  width: 80vw;
-  max-width: 250px; /* Match .slideshow max-width */
+  width: 100%;
+  max-width: 200px;
   height: auto;
+  max-height: 22vh;
+  object-fit: contain;
   border-radius: 8px;
   margin: 0.5rem 0;
-  object-fit: contain;
-  display: block;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: block; /* Ensure it's a block-level element */
+  position: relative; /* Make sure it's not absolute */
+  z-index: 1; /* Lower than buttons */
+}
+.Ptext {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  max-height: 30vh; /* Add this to limit text area */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 4px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
 }
 .slideshow-button {
   position: absolute;
@@ -93,8 +95,8 @@ body{
   background: rgba(255,255,255,0.7);
   border: none;
   border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 2;
@@ -140,11 +142,25 @@ body{
 
 @media (max-width: 600px) {
   #guestcard {
-    width: 80vw;
-    max-width: 90vw;
-    padding: 6px;
-    margin: 5px;
-    min-width: unset;
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    max-width: 70vw;
+    height: 80vh;
+    padding: 4px;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  .slideshow{
+    position: relative;
+    width: 100%;
+    height: 205px;
+    max-width: 220px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   #Title{
     width: 75vw;;
@@ -157,12 +173,6 @@ body{
   color: var(--text-color);
   margin: 0;
 }
-  .slideshow, .slideshow-img {
-    max-width: 60vw;
-  }
-  .slideshow-img {
-    max-width: 60vw;
-  }
   .slideshow-button {
     background-color: var(--button-bg-color);
     width: 2rem;
@@ -170,18 +180,24 @@ body{
     font-size: 1.3rem;
   }
   .Ptext {
-  padding: 6px;
-  font-size: 0.95rem;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  box-sizing: border-box;
+    max-height: 30vh;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    width: 100%;
+    margin: 0;
+    padding: 6px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
   }
 
   .theme-toggle{
   width: 30%;
 }
+}
+@media (max-width: 450px){
+  .Ptext{
+    max-height: 35vh;
+  }
 }
 
 @media (max-width: 380px) {

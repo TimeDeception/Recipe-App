@@ -9,6 +9,7 @@ import "../src/CSS/AuthHome.css";
 
 const HomePage: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [activeView, setActiveView] = useState<"search"|"account"|"saved"|"premium">("search"); // "all" or "personal"
   const [personalCollection, setPersonalCollection] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -51,17 +52,19 @@ const HomePage: React.FC = () => {
   return (
     <>
     <div className="auth-main">
-      <NavBar className="NavCard" />
+      <NavBar className="NavCard" onNavClick={setActiveView}/>
       <div className="home-container">
-        <h1>The Solar Recipe Collection</h1>
+        {activeView === "search" && (
+          <>
+            <h1>The Solar Recipe Collection</h1>
 
-        <SearchBar onSearch={handleSearch} />
+            <SearchBar onSearch={handleSearch} />
 
-        {loading && <p>Loading recipes...</p>}
-        {error && <p className="error">{error}</p>}
+            {loading && <p>Loading recipes...</p>}
+            {error && <p className="error">{error}</p>}
 
-        <div className="recipe-container">
-          <div className="recipe-list">
+            <div className="recipe-container">
+            <div className="recipe-list">
             {recipes.length > 0 ? (
               recipes.map((recipe) => (
                 <RecipeCard
@@ -70,12 +73,53 @@ const HomePage: React.FC = () => {
                   onAddToCollection={handleAddToCollection}
                   onShowDetails={showRecipeDetails}
                 />
-              ))
-            ) : (
+               ))
+              ) : (
               <p>No recipes found</p>
+              )}
+
+            </div>
+          </div>
+        </>
+        )}
+        {activeView === "account" && (
+          <div className="account-view">
+            <h1>Account</h1>
+            <p>Manage your account settings here.</p>
+            {/* Add account management features here */}
+          </div>
+        )}
+        {activeView === "saved" && (
+          <div className="saved-view">
+            <h1>Your Saved Recipes</h1>
+            {personalCollection.length > 0 ? (
+              <div className="recipe-list">
+                {personalCollection.map((recipeId) => {
+                  const recipe = recipes.find((r) => r.id === recipeId);
+                  return (
+                    recipe && (
+                      <RecipeCard
+                        key={recipe.id}
+                        recipe={recipe}
+                        onAddToCollection={handleAddToCollection}
+                        onShowDetails={showRecipeDetails}
+                      />
+                    )
+                  );
+                })}
+              </div>
+            ) : (
+              <p>No saved recipes</p>
             )}
           </div>
-        </div>
+        )}
+        {activeView === "premium" && (
+          <div className="premium-view">
+            <h1>Go Premium</h1>
+            <p>Upgrade to premium for exclusive features!</p>
+            {/* Add premium features here */}
+          </div>
+        )}
       </div>
     </div>
       {showRecipe && (
