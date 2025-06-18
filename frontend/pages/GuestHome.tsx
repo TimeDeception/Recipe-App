@@ -34,39 +34,42 @@ const GuestPage = () => {
     "Hello Friend, Welcome to Solar Recipe's. A website where you can save create and browse recipes from every culture on earth. This app is aiming to unite the people with a common love for food and to bring attention to the lifestyle known as Solar Punk. The life of a solar punk enthusiast promotes the harmony of both nature and technology to allow for the maximum enjoyment of life.";
   return (
     <> 
-          <CardTemplate
-          CardStyle="CardStyle"
-          idName="Title"
-          isHeading={true}
-          text="Welcome to Solar Recipe's"
-        />
-      
-      
-     
-      <CardTemplate
-  CardStyle="CardStyle"
-  idName="guestcard"
-  text={
-    <>
-      {meals.length > 0 && (
-        <div className="slideshow">
-  <button className="slideshow-button prev" onClick={handlePrev}>&lt;</button>
-  <img
-    src={meals[currentIndex].strMealThumb}
-    alt={meals[currentIndex].strMeal}
-    className="slideshow-img"
-  />
-  <button className="slideshow-button next" onClick={handleNext}>&gt;</button>
-  <div style={{ marginTop: "0.5rem", fontWeight: "bold" }}>
-    {meals[currentIndex].strMeal}
-  </div>
-</div>
-      )}
-      <div className = "Ptext">{text}</div>
-    </>
-  }
-/>
-     
+        <CardTemplate
+        CardStyle="CardStyle"
+        isHeading={true}
+        idName="Title"
+        text="Welcome to Solar Recipe's"
+              />
+
+        <CardTemplate
+        CardStyle="CardStyle"
+        idName="guestcard"
+        text={
+          <>
+            <div className="slideshow">
+              {meals.length > 0 ? (
+              <>
+                <button className="slideshow-button prev" onClick={handlePrev}>&lt;</button>
+                <img
+                  style={{ width: 250, height: 250 }}
+                  src={meals[currentIndex].strMealThumb}
+                  alt={meals[currentIndex].strMeal}
+                  className="slideshow-img"
+                />
+                  <button className="slideshow-button next" onClick={handleNext}>&gt;</button>
+                  <div style={{ marginTop: "0.2rem", fontWeight: "bold" }}>
+                    {meals[currentIndex].strMeal}
+                  </div>
+              </>
+              ) : (
+                // Placeholder to reserve space
+                <div style={{ width: 250, height: 250 }} />
+              )}
+            </div>
+            <div className = "Ptext">{text}</div>
+          </>
+        }
+      />    
     </>
   );
 };

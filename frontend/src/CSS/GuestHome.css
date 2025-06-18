@@ -1,35 +1,23 @@
 @import url(themes.css);
 
-body {
-  display: flex;
-  min-height: 75vh;
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* Prevent page scroll */
-}
 #main {
-  min-height: 620px;
-  height: 700px;
-  width: 900px;
   display: flex;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 #guestcard {
-  width: 90vw;
-  max-width: 400px;
+  width: 75vw;
+  height: 75vh;
+  max-width: 80vh;
   min-width: 220px;
-  height: 90vh;
-  max-height: 90vh;
   padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   margin: 5px 0;
   border-radius: 15px;
   background-color: var(--card-bg-color);
@@ -58,6 +46,7 @@ body {
   position: relative; /* Add this */
   width: 100%;
   max-width: 220px;
+  min-height: 10vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -66,9 +55,8 @@ body {
 }
 .slideshow-img {
   width: 100%;
-  max-width: 200px;
   height: auto;
-  max-height: 22vh;
+  max-height: 30vh;
   object-fit: contain;
   border-radius: 8px;
   margin: 0.5rem 0;
@@ -107,11 +95,11 @@ body {
   /* Remove static left/right here, set in .prev/.next */
 }
 .slideshow-button.prev {
-  left: 10px;
+  left: 5px;
   background-color: var(--button-background);
 }
 .slideshow-button.next {
-  right: 10px;
+  right: 5px;
   background-color: var(--button-background);
 }
 .slideshow-button:hover {
@@ -144,12 +132,12 @@ body {
   #guestcard {
     display: flex;
     flex-direction: column;
-    width: 70vw;
-    max-width: 70vw;
-    height: 80vh;
+    width: 80vw;
+    max-width: 85vw;
+    height: 85vh;
     padding: 4px;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     overflow: hidden;
   }
   .slideshow{
@@ -157,10 +145,13 @@ body {
     width: 100%;
     height: 205px;
     max-width: 220px;
-    margin: 0 auto;
+    margin: 0 auto 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .slideshow-img {
+    max-width: 35vw;
   }
   #Title{
     width: 75vw;;
@@ -195,12 +186,35 @@ body {
 }
 }
 @media (max-width: 450px){
+  .slideshow-img {
+    max-width: 40vw;
+    height: auto;
+  }
+  #guestcard {
+    justify-content: space-evenly;
+    width: 90vw;
+    max-width: 90vw;
+    height: 80vh;
+    padding: 4px;
+    margin: 2px;
+    min-width: unset;
+    font-size: 0.95rem;
+  }
   .Ptext{
+    font-size: .9rem;
     max-height: 35vh;
+  }
+  .button-container {
+    gap: 0.2rem;
+    margin: 0.5rem;
+    font-size: 0.6rem;
   }
 }
 
 @media (max-width: 380px) {
+  #Title h1{
+    font-size: 1.6rem;
+  }
   #guestcard {
     width: 85vw;
     max-width: 99vw;
@@ -209,12 +223,13 @@ body {
     margin: 2px;
     min-width: unset;
     font-size: 0.95rem;
+    overflow-y: auto;
   }
-  .slideshow, .slideshow-img {
+  .slideshow {
     max-width: 60vw;
   }
   .slideshow-img {
-    max-width: 60vw;
+    max-width: 45vw;
   }
   .slideshow-button {
     width: 1.7rem;

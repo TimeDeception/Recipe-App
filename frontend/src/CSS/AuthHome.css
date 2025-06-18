@@ -15,9 +15,10 @@ ul {
 }
 
 button {
-  background-color: #28a745;
-  color: white;
+  background-color: var(--button-background);
+  color: var(--button-text);
   padding: 10px 15px;
+  margin: 2px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -30,8 +31,10 @@ button:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
+  min-height: 100vh;
 }
 
 .NavCard {
@@ -52,7 +55,7 @@ button:hover {
 }
 
 .home-container {
-  width: calc(100vw - 180px);
+  flex: 1 1 0%;
   min-width: 0;
   height: 100vh;
   overflow-y: auto;
@@ -87,7 +90,7 @@ button:hover {
 
 .recipe-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   justify-items: center;
   width: 100%;
@@ -134,6 +137,10 @@ button:hover {
   border-radius: 8px;
   margin-bottom: 1rem;
 }
+.size-6 {
+  width: 2em;
+  height: 2em;
+}
 
 /* Optional: dark background overlay */
 .recipe-info-overlay {
@@ -145,7 +152,7 @@ button:hover {
 
 @media (max-width: 900px) {
   .recipe-list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
   .recipe-container{
     margin-left: auto;
@@ -182,15 +189,22 @@ button:hover {
   .recipe-container{
     margin: 10px;
   }
+  .recipe-card button{
+    font-size: 0.8em;
+    width:80%;
+    height:6vh;
+    padding:4px;
+    margin: 2px;
+  }
 }
 
 @media (max-width: 600px) {
   .recipe-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .recipe-card {
-    width: 60vw;
+    width: 85%;
     min-width: 0;
     padding: 6px;
   }
@@ -199,15 +213,33 @@ button:hover {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 530px) {
   .recipe-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
   .recipe-card {
-    width: 40vw;
+    width: 80%;
     min-width: 0;
-    max-width: 98vw;
+    max-width: 85%;
+    padding: 6px;
+  }
+  .recipe-card img {
+    max-width: 90vw;
+  }
+  .home-container h1{
+    font-size: 1.5em;
+  }
+}
+@media (max-width: 400px) {
+  .recipe-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .recipe-card {
+    width: 90%;
+    min-width: 0;
+    max-width: 95%;
     padding: 6px;
   }
   .recipe-card img {
