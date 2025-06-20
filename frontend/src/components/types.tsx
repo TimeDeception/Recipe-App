@@ -5,3 +5,8 @@ export interface Recipe {
   ingredients: string[];
   instructions: string;
 }
+export interface User {
+  username: string;
+  email: string;
+  subscriptionStatus: "free" | "premium";
+}

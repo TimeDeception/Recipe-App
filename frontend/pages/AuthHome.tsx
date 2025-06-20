@@ -3,13 +3,16 @@ import NavBar from "../src/components/NavBar";
 import SearchBar from "../src/components/SearchBar";
 import RecipeCard from "../src/components/RecipeCard";
 import RecipeInfo from "../src/components/RecipeInfo";
-import { fetchRecipesByName } from "../src/api";
+import { fetchRecipesByName } from "../src/MealDBapi";
 import { Recipe } from "../src/components/types";
 import "../src/CSS/AuthHome.css";
+import UserInfo from "../src/components/Userinfo.tsx";
+import { User } from "../src/components/types";
 
 const HomePage: React.FC = () => {
+  const [user, setUser] = useState<User | null>(null);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [activeView, setActiveView] = useState<"search"|"account"|"saved"|"premium">("search"); // "all" or "personal"
+  const [activeView, setActiveView] = useState<"search"|"account"|"saved"|"premium">("search");
   const [personalCollection, setPersonalCollection] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -40,9 +43,13 @@ const HomePage: React.FC = () => {
       setError("Recipe not found.");
     }
   }
-    
-    
 
+  const handleLogout = () => {
+    setUser(null);
+    // Optionally clear tokens, localStorage, etc.
+    // Optionally redirect or setActiveView("login") or similar
+  }; 
+    
   const handleAddToCollection = (recipeId: string) => {
     setPersonalCollection((prev) =>
       prev.includes(recipeId) ? prev : [...prev, recipeId]
@@ -82,11 +89,13 @@ const HomePage: React.FC = () => {
           </div>
         </>
         )}
-        {activeView === "account" && (
+        {activeView === "account" && user &&(
           <div className="account-view">
-            <h1>Account</h1>
-            <p>Manage your account settings here.</p>
-            {/* Add account management features here */}
+            <UserInfo
+              user={user}
+              onLogout={handleLogout}
+              onUpgrade={() => setActiveView("premium")}
+            />
           </div>
         )}
         {activeView === "saved" && (
