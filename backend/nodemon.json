@@ -2,6 +2,5 @@
   "watch": ["server.js", "utils", "routes"],
   "ext": "js,json",
   "ignore": ["node_modules"],
-  "exec": "node server.js",
   "legacyWatch": true
 }

@@ -2,15 +2,19 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const auth = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
 // Registration endpoint
 router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: "All fields are required." });
+  }
   try {
     let user = await User.findOne({ email });
-    if (user) return res.status(400).json({ msg: "user already exists" });
+    if (user) return res.status(400).json({ error: "user already exists" });
 
     user = new User({ username, email, password });
     const salt = await bcrypt.genSalt(10);
@@ -28,7 +32,8 @@ router.post("/register", async (req, res) => {
       }
     );
   } catch (err) {
-    res.status(500).json({ msg: "Server error" });
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
@@ -37,28 +42,49 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ msg: "Invalid credentials" });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+    if (!user) {
+      console.log("User not found for email:", email);
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
+    let isMatch  = false;
+    try {
+      isMatch = await bcrypt.compare(password, user.password);
+    }catch (bcryptErr){
+      console.error("bcrypt.compare error:", bcryptErr);
+      return res.status(500).json({ error: "Server error" });
+    }
+    if(!isMatch){
+      console.log("Password mismatch for user:", email);
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
 
     const payload = { user: { id: user.id } };
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expireIn: "1h" },
+      { expiresIn: "1h" },
       (err, token) => {
-        if (err) throw err;
-        res, json({ token });
+        if (err) {
+          console.error("JWT sign error:", err);
+          return res.status(500).json({ error: "Server error" });
+        };
+        // Excludes password from the user object before sending response
+        // mongoose's toObject() method is used to convert the Mongoose document to a plain JavaScript object
+        const {password, ...userWithoutPassword} = user.toObject();
+        console.log("Login successful for user:", email);
+        res.json({ token, user: userWithoutPassword });
       }
     );
   } catch (err) {
-    res.status(500).json({ msg: "Server error" });
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
   }
-  router.get("/me", auth, async (req, res) => {
+  
+});
+
+router.get("/me", auth, async (req, res) => {
     const user = await User.findById(req.user.id).select("-password");
     res.json({ user });
   });
-});
 
 module.exports = router;

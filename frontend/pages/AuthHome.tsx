@@ -9,8 +9,13 @@ import "../src/CSS/AuthHome.css";
 import UserInfo from "../src/components/Userinfo.tsx";
 import { User } from "../src/components/types";
 
-const HomePage: React.FC = () => {
-  const [user, setUser] = useState<User | null>(null);
+interface HomePageProps {
+  user: User | null;
+  setUser: (user: User | null) => void;
+  setAuth: (auth: boolean) => void;
+}
+
+const HomePage: React.FC<HomePageProps> = ({user, setUser, setAuth}) => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [activeView, setActiveView] = useState<"search"|"account"|"saved"|"premium">("search");
   const [personalCollection, setPersonalCollection] = useState<string[]>([]);
@@ -46,8 +51,8 @@ const HomePage: React.FC = () => {
 
   const handleLogout = () => {
     setUser(null);
-    // Optionally clear tokens, localStorage, etc.
-    // Optionally redirect or setActiveView("login") or similar
+    setAuth(false);
+    localStorage.removeItem("token");
   }; 
     
   const handleAddToCollection = (recipeId: string) => {

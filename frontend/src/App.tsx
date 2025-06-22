@@ -10,11 +10,13 @@ import {
 import AuthCard from "./components/AuthCard.tsx";
 import GuestPage from "../pages/GuestHome.tsx";
 import HomePage from "../pages/AuthHome.tsx";
+import { User } from "./components/types.tsx";
 
 //import Card from "./components/cardTemplate";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user , setUser] = useState<User | null>(null);
 
   return (
     <Router>
@@ -25,13 +27,13 @@ const App: React.FC = () => {
         {/* Login/Register Page */}
         <Route
           path="/auth"
-          element={<AuthCard setAuth={setIsAuthenticated} />}
+          element={<AuthCard setUser={setUser} setAuth={setIsAuthenticated} />}
         />
 
         {/* Protected Home Page (Redirect if not logged in) */}
         <Route
           path="/home"
-          element={isAuthenticated ? <HomePage /> : <Navigate to="/" />}
+          element={isAuthenticated ? <HomePage user={user} setUser={setUser} setAuth={setIsAuthenticated}/> : <Navigate to="/" />}
         />
       </Routes>
     </Router>

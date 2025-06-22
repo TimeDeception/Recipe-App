@@ -3,12 +3,16 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
-
+const authRoutes = require('./routes/auth');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Middleware setup
 app.use(cors());
 app.use(bodyParser.json());
+//Route authentication setup
+app.use('/api/auth', authRoutes);
+
 
 const restrictAccess = require('./middleware/authMiddleware');
 const isProduction = process.env.NODE_ENV === "production";

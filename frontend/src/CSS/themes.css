@@ -59,8 +59,8 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
-  width: 400px;
-  height: 400px;
+  width: 40vw;
+  height: 60vh;
   padding: 20px;
   background: var(--card-bg-color);
   border-color: var(--border-bg-color);

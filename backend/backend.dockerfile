@@ -10,7 +10,7 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-EXPOSE 5173
+EXPOSE 5000
 
 # Use nodemon for development
 CMD ["npx", "nodemon", "server.js"]
