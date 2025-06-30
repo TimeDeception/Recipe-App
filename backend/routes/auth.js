@@ -2,7 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const auth = require("../middleware/authMiddleware");
+const auth = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -86,5 +86,40 @@ router.get("/me", auth, async (req, res) => {
     const user = await User.findById(req.user.id).select("-password");
     res.json({ user });
   });
+
+//Get saved recipes
+router.get("/saved", auth, async (req,res) => {
+  const user = await User.findById(req.user.id)
+  res.json({ savedRecipes: user.savedRecipes})
+});
+// Save a recipe
+router.post("/save", auth, async (req, res)=> {
+  try{
+    const {recipeId} = req.body;
+    const user = await User.findById(req.user.id)
+    if(!user.savedRecipes.includes(recipeId)){
+      user.savedRecipes.push(recipeId);
+      await user.save();
+    }
+    res.json({ savedRecipes: user.savedRecipes});
+  } catch (err) {
+    console.error("Error saving recipe:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+// Remove a saved recipe
+router.post("/unsave", auth, async (req, res) => {
+  try{
+    const { recipeId} = req.body;
+    const user= await User.findById(req.user.id);
+    user.savedRecipes= user.savedRecipes.filter(id=> id !== recipeId);
+    await user.save();
+    res.json({ savedRecipes: user.savedRecipes });
+  } catch(err){
+    console.error("Error removing saved recipe:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+  
+});
 
 module.exports = router;

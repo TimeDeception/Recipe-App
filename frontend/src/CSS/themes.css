@@ -59,6 +59,7 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
+  justify-content: space-evenly;;
   width: 40vw;
   height: 60vh;
   padding: 20px;
@@ -68,8 +69,6 @@ body {
   box-shadow: 0 4px 8px whitesmoke;
   text-align: center;
   margin: 10px;
-  justify-self: center;
-  align-self: center;
 }
 .auth-container{
   display: flex;
@@ -162,9 +161,25 @@ body {
   position: fixed;
 }
 
+@media (max-width: 700px) {
+  .auth-card{
+    width: 75vw;
+    height: 60vh;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 600px){
+  .auth-card{
+    width: 70vw;
+    height: 60vh;
+    padding: 10px;
+  }
+}
+
 @media (max-width: 420px) {
   .auth-card{
-    width: 90vw;
+    width: 75vw;
     height: auto;
     padding: 10px;
   }

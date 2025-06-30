@@ -22,7 +22,6 @@ const AuthCard: React.FC<AuthCardProps> = ({ setAuth, setUser }) => {
     setLoading(true);
     try {
       const res = await api.post("/auth/login", { email, password });
-      console.log(res.data);
       localStorage.setItem("token", res.data.token);
       setUser(res.data.user);
       setAuth(true); // Set user as authenticated

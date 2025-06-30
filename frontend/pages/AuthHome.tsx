@@ -8,6 +8,7 @@ import { Recipe } from "../src/components/types";
 import "../src/CSS/AuthHome.css";
 import UserInfo from "../src/components/Userinfo.tsx";
 import { User } from "../src/components/types";
+import api from "../src/utils/api.ts"; // Adjust the import path as necessary
 
 interface HomePageProps {
   user: User | null;
@@ -26,6 +27,16 @@ const HomePage: React.FC<HomePageProps> = ({user, setUser, setAuth}) => {
   useEffect(() => {
     handleSearch(""); // Default search
   }, []);
+
+  useEffect(() => {
+    if (user) fetchSavedRecipes();
+  }, [user]);
+  const fetchSavedRecipes= async () => {
+    const res = await api.get("/auth/saved", {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    });
+    setPersonalCollection(res.data.savedRecipes);
+  }
 
   const handleSearch = async (query: string) => {
     setLoading(true);
@@ -55,17 +66,26 @@ const HomePage: React.FC<HomePageProps> = ({user, setUser, setAuth}) => {
     localStorage.removeItem("token");
   }; 
     
-  const handleAddToCollection = (recipeId: string) => {
+  const handleAddToCollection = async(recipeId: string) => {
+    await api.post("/auth/save", {recipeId}, {
+      headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
+    })
     setPersonalCollection((prev) =>
       prev.includes(recipeId) ? prev : [...prev, recipeId]
     );
   };
+  const handleRemoveFromCollection = async(recipeId: string) => {
+    await api.post("/auth/unsave", {recipeId}, {
+      headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
+    })
+    setPersonalCollection((prev)=> prev.filter((id) => id !== recipeId));
+  }
 
   return (
     <>
     <div className="auth-main">
       <NavBar className="NavCard" onNavClick={setActiveView}/>
-      <div className="home-container">
+      <div className="home-container" id="home-container">
         {activeView === "search" && (
           <>
             <h1>The Solar Recipe Collection</h1>
@@ -82,7 +102,9 @@ const HomePage: React.FC<HomePageProps> = ({user, setUser, setAuth}) => {
                 <RecipeCard
                   key={recipe.id}
                   recipe={recipe}
+                  isSaved={personalCollection.includes(recipe.id)}
                   onAddToCollection={handleAddToCollection}
+                  onRemoveFromCollection={handleRemoveFromCollection}
                   onShowDetails={showRecipeDetails}
                 />
                ))
@@ -115,7 +137,9 @@ const HomePage: React.FC<HomePageProps> = ({user, setUser, setAuth}) => {
                       <RecipeCard
                         key={recipe.id}
                         recipe={recipe}
+                        isSaved={personalCollection.includes(recipe.id)}
                         onAddToCollection={handleAddToCollection}
+                        onRemoveFromCollection={handleRemoveFromCollection}
                         onShowDetails={showRecipeDetails}
                       />
                     )
